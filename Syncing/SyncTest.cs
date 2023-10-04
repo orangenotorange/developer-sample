@@ -7,20 +7,20 @@ namespace DeveloperSample.Syncing
     public class SyncTest
     {
         [Fact]
-        public void CanInitializeCollection()
+        public async void CanInitializeCollection()
         {
             var debug = new SyncDebug();
             var items = new List<string> { "one", "two" };
-            var result = debug.InitializeList(items);
+            var result = await debug.InitializeList(items);
             Assert.Equal(items.Count, result.Count);
         }
 
         [Fact]
-        public void ItemsOnlyInitializeOnce()
+        public async void ItemsOnlyInitializeOnce()
         {
             var debug = new SyncDebug();
             var count = 0;
-            var dictionary = debug.InitializeDictionary(i =>
+            var dictionary = await debug.InitializeDictionary(i =>
             {
                 Thread.Sleep(1);
                 Interlocked.Increment(ref count);
