@@ -3,8 +3,8 @@ import './LoginForm.css';
 
 const LoginForm = (props) => {
 	const [loginInfo, setLoginInfo] = useState({
-		login: undefined,
-		password: undefined,
+		login: "",
+		password: "",
 	})
 	
 	const updateLogin = (event) => {
@@ -16,9 +16,13 @@ const LoginForm = (props) => {
 		const password = event.target.value
 		setLoginInfo({ ...loginInfo, password })
 	}
-	const handleSubmit = (event) =>{
+	const handleSubmit = async (event) =>{
 		event.preventDefault();
 		props.onSubmit(loginInfo);
+		await setLoginInfo({
+			login: "",
+			password: ""
+		})
 	}
 
 	return (
