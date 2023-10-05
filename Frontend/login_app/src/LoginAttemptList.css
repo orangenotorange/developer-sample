@@ -6,3 +6,10 @@
   max-width: 25vw;
   padding: 0 2em;
 }
+
+.Attempt-List li {
+  display: flex;
+  width: 100%;
+  gap: 2rem;
+  justify-content: space-between;
+}
