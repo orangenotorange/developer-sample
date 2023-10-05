@@ -7,18 +7,20 @@ namespace DeveloperSample.Algorithms
 {
     public static class Algorithms
     {
-       // private static Dictionary<int, int> Factorials = new Dictionary<int, int>() { {0,1}, {1, 1}};
+        // Cache the values for performance/fun.
+        private static readonly Dictionary<int, int> Factorials = new () { {0,1}, {1, 1}};
         public static int GetFactorial(int n) {
             // TODO this will fail above n == 20
-            if (n == 0 || n == 1)
+            var maxFactorial = Factorials.Count - 1 ;
+            if (maxFactorial > n)
             {
-                return 1;
+                return Factorials[n];
             }
-            
-            var result = 1;
-            for (var i = 2; i <= n; i++)
+            var result = Factorials[maxFactorial];
+            for (var i = maxFactorial; i <= n; i++)
             {
                 result *= i;
+                Factorials[i] = result;
             }
 
             return result;
